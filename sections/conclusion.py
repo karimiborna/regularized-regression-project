@@ -1,7 +1,7 @@
 from dash import html, dcc
 
 layout = html.Div([
-    html.H2("Conclusion and Reflections 🧐"),
+    html.H2("Conclusion and Reflections"),
     dcc.Markdown(
         r"""
 Regularization has given us a completely new perspective on what makes a regression model “good.”  
