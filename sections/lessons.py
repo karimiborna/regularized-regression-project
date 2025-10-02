@@ -1,7 +1,7 @@
 from dash import html, dcc
 
 layout = html.Div([
-    html.H2("Lessons Learned: Ridge vs. Lasso 🤓"),
+    html.H2("Lessons Learned: Ridge vs. Lasso"),
     dcc.Markdown(
         r"""
 ### Ridge Regression (L2 penalty)
