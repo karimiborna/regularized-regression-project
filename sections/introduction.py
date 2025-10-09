@@ -26,8 +26,8 @@ plt.close()
 
 # Figure 2: Same line, but more points added
 # Figure 2: Same line, but more points added
-x2 = np.linspace(0, 3, 7)             # cover a wider x range
-y2 = np.array([0, 0.6, 1.4, 2.4, 3.0, 3.6, 4.2])  # purposely off the line
+x2 = np.linspace(0, 3, 5)             # cover a wider x range
+y2 = np.array([0, 0.6, 2.4, 3.6, 4.2])  # purposely off the line
 m, b = 2, 0                           # original line y = 2x
 
 # continuous line for visualization

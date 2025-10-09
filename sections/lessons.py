@@ -6,10 +6,12 @@ import os
 os.makedirs("assets", exist_ok=True)
 
 # Original data and line
-x2 = np.linspace(0, 3, 7)
-y2 = np.array([0, 0.6, 1.4, 2.4, 3.0, 3.6, 4.2])
-m1, b1 = 2, 0      # original OLS line
-m2, b2 = 1.3, 0.1  # shrunk Ridge-style line
+x1 = np.array([1, 2])
+y1 = np.array([2, 4])
+x2 = np.linspace(0, 3, 5) 
+y2 = np.array([0, 0.6, 2.4, 3.6, 4.2])
+m1, b1 = 2, 0      # original OLS line s
+m2, b2 = 1.5, 0.1  # shrunk Ridge-style line
 
 x_line = np.linspace(0, 3, 100)
 y_line1 = m1 * x_line + b1
@@ -18,25 +20,31 @@ y_line2 = m2 * x_line + b2
 # Predictions from each model at data x positions
 y_pred_ols = m1 * x2 + b1
 y_pred_ridge = m2 * x2 + b2
+y_pred_ridge_x1 = m2 * x1 + b2
 
 plt.figure(figsize=(5, 4))
 
 # Scatter data
-plt.scatter(x2, y2, color="black", label="Data", zorder=5, s=40)
+plt.scatter(x2, y2, color="black", label="New Data", zorder=5, s=40)
+plt.scatter(x1, y1, color="red", label="Original Data", zorder=5, s=40)
 
 # Original OLS fit (blue)
 plt.plot(x_line, y_line1, color="blue", label="Original Fit (y = 2x)", linewidth=2)
 
 # Ridge fit (green, dashed)
 plt.plot(x_line, y_line2, color="green", linestyle="--",
-         label="Ridge Fit (y = 1.3x + 0.1)", linewidth=2)
+         label="Ridge Fit (y = 1.5x + 0.1)", linewidth=2)
 
 # Residuals: red dotted lines from each point to Ridge line
 for i in range(len(x2)):
     plt.plot([x2[i], x2[i]], [y2[i], y_pred_ridge[i]],
              color="red", linestyle="dotted", linewidth=1.5)
+    
+for i in range(len(x1)):
+    plt.plot([x1[i], x1[i]], [y1[i], y_pred_ridge_x1[i]],
+             color="red", linestyle="dotted", linewidth=1.5)
 
-plt.title("Ridge Regression Shrinks the Coefficient (m) Toward Zero")
+plt.title("Ridge Regression Shrinks the Coefficients Toward Zero")
 plt.xlabel("x")
 plt.ylabel("y")
 plt.legend()
@@ -99,7 +107,7 @@ $$
     ),
 
     html.H3(
-        "New Loss = New SSE + penalty = 1 + 1.3^2 = 2.69.",
+        "New Loss = New SSE + penalty = 1 + 1.5^2 = 3.25.",
         style={
             "textAlign": "center",
         }
