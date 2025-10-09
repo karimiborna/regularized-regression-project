@@ -3,7 +3,7 @@ from dash import html
 from sections import (
     introduction, lessons, performance, conclusion,
     data_preview, model_fit, about,
-    coeff_path, error_curve, residuals
+    coeff_path, residuals
 )
 
 # Initialize app
@@ -71,7 +71,6 @@ app.layout = html.Div([
     html.Div(data_preview.layout, className="section"),
     html.Div(model_fit.layout, className="section"),
     html.Div(coeff_path.layout, className="section"),
-    html.Div(error_curve.layout, className="section"),
     html.Div(residuals.layout, className="section"),
     html.Div(performance.layout, className="section"),
     html.Div(conclusion.layout, className="section"),
@@ -81,7 +80,6 @@ app.layout = html.Div([
 # Register callbacks for interactive sections
 model_fit.register_callbacks(app)
 coeff_path.register_callbacks(app)
-error_curve.register_callbacks(app)
 residuals.register_callbacks(app)
 
 if __name__ == "__main__":

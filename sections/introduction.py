@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 # ------------------------------------------------------------
-# Generate static intuition plots with Matplotlib
+# Making plots in the assets folders for the intro section
 # ------------------------------------------------------------
 
 os.makedirs("assets", exist_ok=True)
@@ -64,7 +64,7 @@ layout = html.Div([
     dcc.Markdown(
         r"""
 Linear regression is one of the basic concepts in statistics and data analysis. 
-We are looking for a straightforward pattern in data so we can predict on thing from another.
+We are looking for a straightforward pattern in data so we can predict one thing from another.
 We can take an outcome $y$ and try to explain it using predictors $x_1, x_2, \dots, x_p$.  
 The model is written as:
 

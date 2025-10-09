@@ -110,6 +110,83 @@ $$
         "we have shrunk the coefficients and found a better fitting line."
     ),
 
+    html.H2(
+        "Now that we have a stronger basic understanding of why ridge regression drives coefficients toward zero, lets get into the math"),
+
+    dcc.Markdown(
+        r"""
+
+### Ridge Math
+
+Remember the motivation: we have too many predictors. 
+
+- Many predictors without penalization -> large prediction intervals and LS regression estimator may not uniquely exist.
+
+Also: we have an "ill-conditioned" X
+ 
+- Because the LS estimates depend on (X'X)^-1, we'd have problems computing the least squares estimate of B if X'X was singular or nearly singular
+- The LS estimator of B may provide a good fit for training data, but it won't fit well to testing data
+
+So, how do we get out of this pickle? One way to is abandon our need for an unbiased estimator.
+
+We will require assuming only X's and Y have been centered, so we have no need for a constant term in the regression:
+
+- X is a n by p matrix with centered columns
+- Y is a centered n-vector
+
+It was proposed the the LS estimator
+
+$$
+\hat{\beta} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}
+$$
+
+
+had instability which could be fixed by adding a constant lambda to the diagonals of the X'X matrix before taking its inverse.
+
+The resulting matrix IS the ridge regression estimator
+
+$$
+\hat{\beta}_{\text{ridge}} = (\mathbf{X}'\mathbf{X} + \lambda \mathbf{I}_p)^{-1}\mathbf{X}'\mathbf{Y}
+$$
+
+The full constraint placed on the parameters (betas) to penalize the sum of squares is shown as: 
+
+$$
+\sum_{i=1}^{n} \left( y_i - \sum_{j=1}^{p} x_{ij}\beta_j \right)^2 + \lambda \sum_{j=1}^{p} \beta_j^2
+$$""",
+    mathjax=True
+),
+
+    html.Img(
+    src="/assets/geom_interp_ridge.png",
+    style={"width": "70%", "display": "block", "margin": "auto"}
+),
+
+    html.H3("Geometric Interpretation of Ridge Regression"),
+
+    html.P(
+        "Another way to understand what Ridge Regression is doing is to look at it geometrically. "
+        "The pink ellipses in this figure represent the contours of the residual sum of squares (RSS) "
+        "each inner ellipse means a smaller RSS, and the very center is where OLS would be if WE DIDN'T CARE ABOUT COEFFICIENT SIZE!!! "
+        "Unfortunately for those who wish this was simple, we do care, so we cannot accept this as our best answer. "
+        "The blue circle shows the Ridge constraint: all possible coefficient combinations that satisfy the condition that the sum of their squared values stays below some constant threshold. "
+    ),
+
+    html.P(
+        "The Ridge estimate happens where one of those RSS ellipses just touches the circle. "
+        "That point represents the best balance between fitting the data well and keeping the coefficients small. "
+        "If we only cared about minimizing RSS, we'd pick the center of the ellipse (OLS), but that usually gives us large, unstable coefficients. "
+        "Using ridge finds us users a compromise of a slightly higher Residual Sum of Squares but much smaller coefficients. "
+    ),
+
+    html.P(
+        "You can think of the penalty term as squeezing the circle smaller as λ increases. "
+        "When λ = 0, the circle is huge and Ridge becomes the same as OLS. "
+        "As λ grows larger, the circle shrinks, pulling the solution closer to the origin. "
+        "In the extreme, as λ approaches infinity, all coefficients collapse toward zero. "
+    ),
+
+
     dcc.Markdown(
         r"""
 ---

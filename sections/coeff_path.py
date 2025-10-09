@@ -11,7 +11,18 @@ feature_names = load_diabetes().feature_names
 layout = html.Div([
     html.H2("Coefficient Paths"),
     html.P("This plot shows how coefficients change as λ increases. "
-           "Ridge shrinks coefficients smoothly, while Lasso drives some to zero abruptly."),
+           "Ridge shrinks coefficients smoothly, while Lasso drives some to zero abruptly. "
+           "Consider for Ridge: The penalty term is squared, which makes the coefficients drop smoothly as lambda increases. "
+           "The shrinkage is uniform and continuous: big coefficients shrink faster, small ones slower, but they all stay in the model. "
+    ),
+
+    html.P(
+           "However, for Lasso: The penalty term is based on absolute magnitude. "
+           "Absolute value can create sharp corners, up to the point, in some data, of shaping like a diamond. "
+           "As lambda increases, some coefficients hit exactly zero and stay there, the model effectively drops those predictors. "
+           "This is how lambda does feature selection. As predictors drop, fewer are left."
+           "The result is a sparser model!"
+    ),
     dcc.Dropdown(
         id="path-model-type",
         options=[{"label": "Ridge", "value": "ridge"}, {"label": "Lasso", "value": "lasso"}],
