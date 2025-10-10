@@ -2,8 +2,8 @@ import dash
 from dash import html
 from sections import (
     introduction, lessons, performance, conclusion,
-    data_preview, model_fit, about,
-    coeff_path, residuals
+    data_preview, about,
+    coeff_path, bias_variance
 )
 
 # Initialize app
@@ -69,18 +69,16 @@ app.layout = html.Div([
     html.Div(introduction.layout, className="section"),
     html.Div(lessons.layout, className="section"),
     html.Div(data_preview.layout, className="section"),
-    html.Div(model_fit.layout, className="section"),
+    html.Div(bias_variance.layout, className="section"),
     html.Div(coeff_path.layout, className="section"),
-    html.Div(residuals.layout, className="section"),
     html.Div(performance.layout, className="section"),
     html.Div(conclusion.layout, className="section"),
     html.Div(about.layout, className="section")
 ])
 
 # Register callbacks for interactive sections
-model_fit.register_callbacks(app)
 coeff_path.register_callbacks(app)
-residuals.register_callbacks(app)
+bias_variance.register_callbacks(app)
 
 if __name__ == "__main__":
     app.run(debug=True)
