@@ -1,12 +1,21 @@
 # Regularized Regression Project
-Final project for Fall 2025 Linear Regression Analysis.  
 The live blog is [here](https://regularized-regression-project.onrender.com/).  
-
-# Regularized Regression Dashboard
 
 This project is an interactive dashboard built with [Plotly Dash](https://dash.plotly.com/) to demonstrate the concepts of **Ridge** and **Lasso** regression.  
 
-It was developed as part of a master's-level course in data science and serves as both an educational tool and a project deliverable.
+It was developed for the final project of the Fall 2025 Regression Analysis class and serves as both an educational tool and a project deliverable.  
+
+Author: Borna Karimi, Alan Luo
+
+---
+
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Repository Description](#repository-description)
+- [Requirements](#requirements)
+- [Local Installation](#local-installation)
+- [Global Installation](#global-installation)
 
 ---
 
