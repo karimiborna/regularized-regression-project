@@ -74,9 +74,12 @@ To install this project locally, follow these steps:
 
 ## Required Packages
 - Python 3.10
-- Dash (Plotly)
-- Plotly
-- scikit-learn
-- Pandas
-- NumPy
 - Gunicorn (for deployment)
+  
+- dash==3.2.0
+- plotly==6.0.0
+- pandas==2.3.3
+- numpy==2.3.3
+- scikit-learn==1.7.2
+- gunicorn==23.0.0
+- matplotlib==3.9.2
