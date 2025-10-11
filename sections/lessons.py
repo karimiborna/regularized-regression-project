@@ -368,10 +368,9 @@ But note that when Ridge and Lasso Regression shrink parameters, they don't have
 dcc.Graph(
     id='lasso-lambda-slider-graph',
     figure=lasso_fig,
-    style={"width": "70%", "margin": "auto"}
+    style={"width": "100%", "margin": "auto"}
 ),
 
-         
 dcc.Markdown(
     r"""
 Lasso minimizes:
