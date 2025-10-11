@@ -3,6 +3,64 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
+import plotly.graph_objs as go
+from sklearn.linear_model import Lasso
+from sklearn.preprocessing import StandardScaler
+
+np.random.seed(42)
+X = np.linspace(0, 10, 10).reshape(-1, 1)
+slope_true = 1.5
+intercept_true = 2
+y = intercept_true + slope_true * X.flatten() + np.random.normal(0, 1, X.shape[0])
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+lambdas = np.linspace(0, 8, 100)
+coefs = []
+lines = []
+for alpha in lambdas:
+    lasso = Lasso(alpha=alpha, fit_intercept=True, max_iter=10000)
+    lasso.fit(X_scaled, y)
+    slope_rescaled = lasso.coef_[0] / scaler.scale_[0]
+    intercept_rescaled = lasso.intercept_ - lasso.coef_[0] * scaler.mean_[0] / scaler.scale_[0]
+    coefs.append([slope_rescaled, intercept_rescaled])
+    y_pred = intercept_rescaled + slope_rescaled * X.flatten()
+    lines.append(y_pred)
+coefs = np.array(coefs)
+
+data = [go.Scatter(
+    x=X.flatten(), y=y, mode='markers', name='Data', marker=dict(color='red')
+)]
+steps = []
+for i in range(len(lambdas)):
+    slope = coefs[i, 0]
+    steps.append(dict(
+        method='update',
+        args=[
+            {'y': [y, lines[i]]},
+            {'title': f'Lasso Regression (lambda={lambdas[i]:.2f})<br>Slope: {slope:.2f}'}
+        ],
+        label=f'λ={lambdas[i]:.2f}'
+    ))
+data.append(go.Scatter(
+    x=X.flatten(), y=lines[0], mode='lines',
+    name='Lasso Regression Line', line=dict(color='orange')
+))
+layout_fig = go.Layout(
+    title=f'Lasso Regression (lambda={lambdas[0]:.2f})<br>Slope: {coefs[0, 0]:.2f}',
+    xaxis=dict(title='Weight'),
+    yaxis=dict(title='Size'),
+    sliders=[dict(
+        active=0,
+        steps=steps,
+        currentvalue={"prefix": "lambda: "},
+        pad={"t": 50},
+    )],
+    showlegend=True
+)
+lasso_fig = go.Figure(data=data, layout=layout_fig)
+
 os.makedirs("assets", exist_ok=True)
 
 # Original data and line
@@ -284,10 +342,15 @@ dcc.Markdown(
     r"""
 For example, if we fit the lines with Training Data, then when λ = 0, we could start with the **Least Squares** estimates for the Slope.  
 But as we increase the value for **λ**, Ridge and Lasso Regression may shrink **Diet Difference** a lot more than they shrink the Slope.  
+"""
+),
+         
+html.H2("Differences"),
 
+dcc.Markdown(
+r"""
 Alright, we have seen how Ridge and Lasso Regression are similar.  
 Now, let's talk about the big difference between them.
-
 
 Both Ridge and Lasso Regression can be applied to complicated models that combine different types of data.  
 In this case, we have two variables: **Weight** (continuous) and *8High Fat Diet** (discrete).  
@@ -301,6 +364,13 @@ Just like the Ridge Regression Penalty, **Lasso Regression Penalty** contains al
 But note that when Ridge and Lasso Regression shrink parameters, they don't have to shrink them all equally.
 """
 ),
+
+dcc.Graph(
+    id='lasso-lambda-slider-graph',
+    figure=lasso_fig,
+    style={"width": "70%", "margin": "auto"}
+),
+
          
 dcc.Markdown(
     r"""
