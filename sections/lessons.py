@@ -390,36 +390,52 @@ Now, let's talk about the big difference between them.
 dcc.Graph(
     id='lasso-lambda-slider-graph',
     figure=lasso_fig,
-    style={"width": "70%", "margin": "auto"}
+    style={"width": "100%", "margin": "auto"}
 ),
 
-
-
-
-
-    
 dcc.Markdown(
-    r"""
-Lasso minimizes:
+r"""
+To see what makes **Lasso** different from **Ridge Regression**, let's go back to the Weight vs Size example, and focus on what happens when we increase the value of **λ**.  
 
-$$
-\mathcal{L}({\beta})
-= \sum_{i=1}^{n} \big(y_i - \hat{y}_i\big)^2
-+ \lambda \sum_{j=1}^{p} \lvert \beta_j \rvert
-$$
+When **λ = 0**, then the **Lasso Regression Line** will be the same as the **Least Squares Line**.  
+As **λ** increases in value, the slope gets smaller, until the slope = **0**.  
 
-- The L1 penalty encourages **sparsity**.  
-- Some coefficients shrink all the way to zero (feature selection).  
-- Useful when only a subset of predictors truly matter.  
+Therefore, the big difference between Ridge and Lasso is that:  
+**Ridge** can only shrink the slope asymptotically close to **0**;
+while **Lasso** can shrink the slope all the way to **0**.  
+
+To appreciate this difference, let's look at a big crazy equation:  
+- **Size** = y-intercept + slope * **Weight** + diet difference * **High Fat Diet** + astrological offset * **Sign** + airspeed scalar * **Airspeed of Swallow**  
+
+The term **Weight** and **High Fat Diet** are both reasonable things to use to predict **Size**, but the **Astrological Sign** and **Airspeed of Swallow** are terrible ways to predict **Size**.  
+
+When we apply **Ridge Regression** to this equation, we find the minimal sum of squared residuals plus the **Ridge Regression Penalty**:
+- λ * (slope^2 + diet difference^2 + astrological offset^2 + airspeed scalar^2)  
+
+As we increase λ, **slope** and **diet difference** might shrink a little bit; **astrological offset** and **airspeed scalar** might shrink a lot, but they will never be **0**.  
+
+In contrast, with **Lasso Regression**:  
+- λ * (|slope| + |diet difference| + |astrological offset| + |airspeed scalar|)  
+
+When we increase λ, **slope** and **diet difference** will shrink a little bit; and **astrological offset** and **airspeed scalar** will go all the way to **0**.  
+Then we are left with a way to predict **Size** that only includes **Weight** and **Diet**, and excludes all the silly stuff.   
+
+Since **Lasso Regression** can exclude useless variables from equations, it is a little better than **Ridge Regression** at reducing the **Variance** in models that contain a lot of useless variables.  
+
+In contrast, Ridge Regression tends to do a little better when most variables are useful.
 
 ---
 
-### Key Lesson
+### Summary
 
-- **Ridge**: smooth shrinkage — all coefficients decrease but remain in the model.  
-- **Lasso**: selection — some coefficients drop to exactly zero.  
+Ridge Regression is very similar to...  
+- sum of squared residuals + **λ** * **the slope^2**  
 
-As \( \lambda \) increases, both add bias but reduce variance, improving generalization.  
+Lasso Regression  
+- sum of squared residuals + **λ** * **the |slope|**  
+
+The main difference is that **Lasso Regression** can exclude useless variables from equations, which makes the final equation simpler and eaiser to interpret.
+
 """,
         mathjax=True
     )
