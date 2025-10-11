@@ -1,14 +1,6 @@
 # Regularized Regression Project
 The live blog is [here](https://regularized-regression-project.onrender.com/).  
 
-This project is an interactive dashboard built with [Plotly Dash](https://dash.plotly.com/) to demonstrate the concepts of **Ridge** and **Lasso** regression.  
-
-It was developed for the final project of the Fall 2025 Regression Analysis class and serves as both an educational tool and a project deliverable.  
-
-Author: Borna Karimi, Alan Luo
-
----
-
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Features](#features)
@@ -17,7 +9,12 @@ Author: Borna Karimi, Alan Luo
 - [Local Installation](#local-installation)
 - [Global Installation](#global-installation)
 
----
+## Project Overview
+This project is an interactive dashboard built with [Plotly Dash](https://dash.plotly.com/) to demonstrate the concepts of **Ridge** and **Lasso** regression.  
+
+It was developed for the final project of the Fall 2025 Regression Analysis class and serves as both an educational tool and a project deliverable.  
+
+Author: Borna Karimi, Alan Luo  
 
 ## Features
 - **Introduction & Lessons**:  
@@ -46,8 +43,6 @@ Author: Borna Karimi, Alan Luo
 - **About & References**:  
   Explains the purpose of the project, who built it, and lists the main resources we used.  
   Includes course materials, academic papers, and a few online articles that helped with intuition and visuals.
-
----
 
 ## Running Locally
 
@@ -87,10 +82,3 @@ Author: Borna Karimi, Alan Luo
 - Pandas
 - NumPy
 - Gunicorn (for deployment)
-
-## Authors
-Borna Karimi, Alan Luo
-MS Data Science Candidates
-University of San Francisco
-
-
