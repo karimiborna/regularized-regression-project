@@ -87,7 +87,8 @@ To install this project locally, follow these steps:
 ## Required Packages
 - Python 3.10
 - Gunicorn (for deployment)  
-  
+
+
 - dash==3.2.0
 - plotly==6.0.0
 - pandas==2.3.3
