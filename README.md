@@ -5,7 +5,6 @@ The live blog is [here](https://regularized-regression-project.onrender.com/).
 - [Project Overview](#project-overview)
 - [Features](#features)
 - [Repository Description](#repository-description)
-- [Requirements](#requirements)
 - [Local Installation](#local-installation)
 - [Global Installation](#global-installation)
 
@@ -44,36 +43,34 @@ Author: Borna Karimi, Alan Luo
   Explains the purpose of the project, who built it, and lists the main resources we used.  
   Includes course materials, academic papers, and a few online articles that helped with intuition and visuals.
 
-## Running Locally
+## Local Installation
+To install this project locally, follow these steps:  
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/YOUR_USERNAME/regularized-regression-dashboard.git
+   ```
+   
+2. Navigate to the project directory:
+```bash
    cd regularized-regression-dashboard
+```
 
-2. Create and activate a virtual environment:
-  ```bash
-  conda create -n regdash python=3.10
-  conda activate regdash
-  ```
-  or with venv:
-  ```bash
-  python -m venv venv
-  source venv/bin/activate   # macOS/Linux
-  venv\Scripts\activate      # Windows
-  ```
-3. Install dependencies:
+3. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
    ```
+
 4. Run the app:
    ```bash
    python app.py
    ```
+
 5. Open your browser at:
    ```bash
    http://127.0.0.1:8050/
    ```
+
 ## Technologies
 - Python 3.10
 - Dash (Plotly)
