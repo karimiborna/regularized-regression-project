@@ -16,10 +16,13 @@ y = intercept_true + slope_true * X.flatten() + np.random.normal(0, 1, X.shape[0
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-lambdas = np.linspace(0, 8, 100)
+# Generate lambdas only until slope equals 0 (or close)
+lambdas = np.linspace(0, 8, 500)
 coefs = []
 lines = []
-for alpha in lambdas:
+stopping_index = len(lambdas) - 1
+
+for idx, alpha in enumerate(lambdas):
     lasso = Lasso(alpha=alpha, fit_intercept=True, max_iter=10000)
     lasso.fit(X_scaled, y)
     slope_rescaled = lasso.coef_[0] / scaler.scale_[0]
@@ -27,11 +30,18 @@ for alpha in lambdas:
     coefs.append([slope_rescaled, intercept_rescaled])
     y_pred = intercept_rescaled + slope_rescaled * X.flatten()
     lines.append(y_pred)
+    if np.abs(slope_rescaled) < 1e-5:  # near zero slope condition
+        stopping_index = idx
+        break
+
 coefs = np.array(coefs)
+lambdas = lambdas[:stopping_index + 1]
+lines = lines[:stopping_index + 1]
 
 data = [go.Scatter(
     x=X.flatten(), y=y, mode='markers', name='Data', marker=dict(color='red')
 )]
+
 steps = []
 for i in range(len(lambdas)):
     slope = coefs[i, 0]
@@ -39,16 +49,26 @@ for i in range(len(lambdas)):
         method='update',
         args=[
             {'y': [y, lines[i]]},
-            {'title': f'Lasso Regression (lambda={lambdas[i]:.2f})<br>Slope: {slope:.2f}'}
+            {'annotations': [
+                dict(
+                    x=5, y=max(y) + 2,
+                    text=f"slope = {slope:.2f}",
+                    showarrow=False,
+                    font=dict(size=18, color='black')
+                )
+            ],
+                'title': f'Lasso Regression (lambda={lambdas[i]:.2f})'}
         ],
         label=f'λ={lambdas[i]:.2f}'
     ))
+
 data.append(go.Scatter(
     x=X.flatten(), y=lines[0], mode='lines',
     name='Lasso Regression Line', line=dict(color='orange')
 ))
+
 layout_fig = go.Layout(
-    title=f'Lasso Regression (lambda={lambdas[0]:.2f})<br>Slope: {coefs[0, 0]:.2f}',
+    title=f'Lasso Regression (lambda={lambdas[0]:.2f})',
     xaxis=dict(title='Weight'),
     yaxis=dict(title='Size'),
     sliders=[dict(
@@ -57,8 +77,13 @@ layout_fig = go.Layout(
         currentvalue={"prefix": "lambda: "},
         pad={"t": 50},
     )],
-    showlegend=True
-)
+    annotations=[dict(
+        x=5, y=max(y) + 2,
+        text=f"slope = {coefs[0, 0]:.2f}",
+        showarrow=False,
+        font=dict(size=18, color='black'))],
+    showlegend=True)
+
 lasso_fig = go.Figure(data=data, layout=layout_fig)
 
 os.makedirs("assets", exist_ok=True)
@@ -322,7 +347,7 @@ html.Img(
 dcc.Markdown(
     r"""
 Both Ridge and Lasso Regression can be applied to complicated models that combine different types of data.  
-In this case, we have two variables: **Weight** (continuous) and *8High Fat Diet** (discrete).  
+In this case, we have two variables: **Weight** (continuous) and **High Fat Diet** (discrete).  
 
 **Size** = y-intercept + slope * **Weight** + diet difference * **High Fat Diet**  
 
@@ -351,26 +376,20 @@ dcc.Markdown(
 r"""
 Alright, we have seen how Ridge and Lasso Regression are similar.  
 Now, let's talk about the big difference between them.
-
-Both Ridge and Lasso Regression can be applied to complicated models that combine different types of data.  
-In this case, we have two variables: **Weight** (continuous) and *8High Fat Diet** (discrete).  
-
-**Size** = y-intercept + slope * **Weight** + diet difference * **High Fat Diet**  
-
-Sum of squared residuals + **λ** * (**|the slope|** + **|diet difference|**)  
-
-Just like the Ridge Regression Penalty, **Lasso Regression Penalty** contains all the estimated parameters except for the y-intercept.  
-
-But note that when Ridge and Lasso Regression shrink parameters, they don't have to shrink them all equally.
 """
 ),
 
 dcc.Graph(
     id='lasso-lambda-slider-graph',
     figure=lasso_fig,
-    style={"width": "100%", "margin": "auto"}
+    style={"width": "70%", "margin": "auto"}
 ),
 
+
+
+
+
+    
 dcc.Markdown(
     r"""
 Lasso minimizes:
