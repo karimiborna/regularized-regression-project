@@ -208,20 +208,99 @@ To understand those similarities and differences, let's look at this chart.
 
 html.Img(
     src="/assets/lasso_001.jpg",
-    style={"width": "70%", "display": "block", "margin": "auto"}),
+    style={"width": "50%", "display": "block", "margin": "auto"}),
 
          
 dcc.Markdown(
     r"""
-The chart show **Weight** and **Size** measurements from a bunch of mice.
-The **Red Dots** are **Training Data**, while the **Green Dots** are **Testing Data**.
-Then we fit a line to the **Training Data** using **Least Squares**, so we minimized the **sum of squared residuals**.
+The chart show **Weight** and **Size** measurements from a bunch of mice.  
+The **Red Dots** are **Training Data**, while the **Green Dots** are **Testing Data**.  
+Then we fit a line to the **Training Data** using **Least Squares**, so we minimized the **sum of squared residuals**.  
 From the chart, we can see that even though the line fit the **Training Data** very well (low **Bias**), it didn't fit the **Testing Data** very well (high **Variance**).
-
-
 """
 ),
 
+html.Img(
+    src="/assets/lasso_002.jpg",
+    style={"width": "50%", "display": "block", "margin": "auto"}),
+
+dcc.Markdown(
+    r"""
+Then we fit a line to the data using **Ridge Regression** to minimize:  
+**sum of squared residuals** + **λ** * **the slope^2**  
+
+So **Ridge Regression** is just **Least Squares** plus the **Ridge Regression Penalty**.  
+
+The **Blue Ridge Regression** line did not fit the **Training Data** as well as the **Red Least Squares** line (more **Bias** less **Variance**).  
+The idea was that by starting with a slightly worse fit, **Ridge Regression** provided better long term predictions.  
+
+Now, let's focus on the **Ridge Regression Penalty**:  
+**λ** * **the slope^2**  
+
+If, instead of squaring the slope, we take the absolute value, then we have **Lasso Regression**!  
+**λ** * **|the slope|**  
+
+Just like Ridge Regression, **λ** can be any value from **0** to **positive infinity** and is determined using **Cross Validation**.  
+"""
+),
+
+html.Img(
+    src="/assets/lasso_003.jpg",
+    style={"width": "50%", "display": "block", "margin": "auto"}),
+
+dcc.Markdown(
+    r"""
+Like Ridge Regression, **Lasso Regression** (**Orange** line) results in a line with a little bit of **Bias**, but less **Variance** than **Least Squares**.  
+
+Therefore, not only do Ridge Regression and Lasso Regression look similar in expression, but they also do similar things:  
+they both make our predictions of **Size** less sensitive to this tiny Training Dataset.
+"""
+),
+
+html.Img(
+    src="/assets/lasso_005.jpg",
+    style={"width": "50%", "display": "block", "margin": "auto"}),
+
+dcc.Markdown(
+    r"""
+Both Ridge and Lasso Regression can be applied to complicated models that combine different types of data.  
+In this case, we have two variables: **Weight** (continuous) and *8High Fat Diet** (discrete).  
+
+**Size** = y-intercept + slope * **Weight** + diet difference * **High Fat Diet**  
+
+Sum of squared residuals + **λ** * (**|the slope|** + **|diet difference|**)  
+
+Just like the Ridge Regression Penalty, **Lasso Regression Penalty** contains all the estimated parameters except for the y-intercept.  
+
+But note that when Ridge and Lasso Regression shrink parameters, they don't have to shrink them all equally.
+"""
+),
+
+html.Img(
+    src="/assets/lasso_006.jpg",
+    style={"width": "50%", "display": "block", "margin": "auto"}),
+
+dcc.Markdown(
+    r"""
+For example, if we fit the lines with Training Data, then when λ = 0, we could start with the **Least Squares** estimates for the Slope.  
+But as we increase the value for **λ**, Ridge and Lasso Regression may shrink **Diet Difference** a lot more than they shrink the Slope.  
+
+Alright, we have seen how Ridge and Lasso Regression are similar.  
+Now, let's talk about the big difference between them.
+
+
+Both Ridge and Lasso Regression can be applied to complicated models that combine different types of data.  
+In this case, we have two variables: **Weight** (continuous) and *8High Fat Diet** (discrete).  
+
+**Size** = y-intercept + slope * **Weight** + diet difference * **High Fat Diet**  
+
+Sum of squared residuals + **λ** * (**|the slope|** + **|diet difference|**)  
+
+Just like the Ridge Regression Penalty, **Lasso Regression Penalty** contains all the estimated parameters except for the y-intercept.  
+
+But note that when Ridge and Lasso Regression shrink parameters, they don't have to shrink them all equally.
+"""
+),
          
 dcc.Markdown(
     r"""
