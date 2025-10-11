@@ -292,7 +292,8 @@ $$""",
     Lasso Regression is very **similar** to Ridge Regression, but they have some very important **differences**.
 
     To understand those similarities and differences, let's look at this chart.
-    """
+    """,
+        mathjax=True
 ),
 
 html.Img(
@@ -390,7 +391,7 @@ Now, let's talk about the big difference between them.
 dcc.Graph(
     id='lasso-lambda-slider-graph',
     figure=lasso_fig,
-    style={"width": "100%", "margin": "auto"}
+    style={"width": "120%", "margin": "auto"}
 ),
 
 dcc.Markdown(
@@ -422,7 +423,7 @@ Then we are left with a way to predict **Size** that only includes **Weight** an
 
 Since **Lasso Regression** can exclude useless variables from equations, it is a little better than **Ridge Regression** at reducing the **Variance** in models that contain a lot of useless variables.  
 
-In contrast, Ridge Regression tends to do a little better when most variables are useful.
+In contrast, **Ridge Regression** tends to do a little better when most variables are useful.
 
 ---
 
@@ -434,7 +435,7 @@ Ridge Regression is very similar to...
 Lasso Regression  
 - sum of squared residuals + **λ** \* **the |slope|**  
 
-As λ increases, both of them add bias but reduce variance, improving generalization.  
+As λ increases, both of them **add bias** but **reduce variance**, improving generalization.  
 
 The main difference is that **Lasso Regression** can exclude useless variables from equations, which makes the final equation simpler and eaiser to interpret.
 
