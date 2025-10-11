@@ -201,6 +201,30 @@ $$""",
 
 ### Lasso Regression (L1 penalty)
 
+Lasso Regression is very similar to Ridge Regression, but they have some very important differences.
+
+To understand those similarities and differences, let's look at this chart.
+"""),
+
+html.Img(
+    src="/assets/geom_interp_ridge.png",
+    style={"width": "70%", "display": "block", "margin": "auto"}),
+
+         
+dcc.Markdown(
+    r"""
+The chart show **Weight** and **Size** measurements from a bunch of mice.
+The **Red Dots** are **Training Data**, while the **Green Dots** are **Testing Data**.
+Then we fit a line to the **Training Data** using **Least Squares**, so we minimized the **sum of squared residuals**.
+From the chart, we can see that even though the line fit the **Training Data** very well (low **Bias**), it didn't fit the **Testing Data** very well (high **Variance**).
+
+
+"""
+),
+
+         
+dcc.Markdown(
+    r"""
 Lasso minimizes:
 
 $$
