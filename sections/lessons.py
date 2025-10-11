@@ -250,7 +250,7 @@ $$""",
 
     html.Img(
     src="/assets/geom_interp_ridge.png",
-    style={"width": "40%", "display": "block", "margin": "auto"}
+    style={"width": "50%", "display": "block", "margin": "auto"}
 ),
 
     html.H3("Geometric Interpretation of Ridge Regression"),
