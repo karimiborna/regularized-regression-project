@@ -1,4 +1,4 @@
-# Regularized Regression Project
+# Regularized Regression Dashboard
 The live blog is [here](https://regularized-regression-project.onrender.com/).  
 
 ## Table of Contents
@@ -42,6 +42,18 @@ Author: Borna Karimi, Alan Luo
 - **About & References**:  
   Explains the purpose of the project, who built it, and lists the main resources we used.  
   Includes course materials, academic papers, and a few online articles that helped with intuition and visuals.
+
+## Repository Description
+This repository contains the code for the Regularized Regression blog, a Dash app that demonstrate the concepts of Ridge and Lasso regression.
+
+```
+├── assets/             # Directory of images used for the blog
+├── sections/           # Contains different components for the blog
+├── Procfile            # For Gunicorn web server
+├── README.md           # Instructions about repository
+├── app.py              # Script for deploying the dashboard
+└── requirements.txt    # Requirements needed for deploying application
+```
 
 ## Local Installation
 To install this project locally, follow these steps:  
