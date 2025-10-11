@@ -40,7 +40,7 @@ app.index_string = """
         margin-bottom: 15px;
       }
       p {
-        text-align: center;
+        text-align: left;
       }
       .section {
         margin-bottom: 40px;  /* space between sections */
