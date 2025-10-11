@@ -48,7 +48,7 @@ To install this project locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/regularized-regression-dashboard.git
+   git clone https://github.com/karimiborna/regularized-regression-project.git
    ```
 
 2. Navigate to the project directory:
