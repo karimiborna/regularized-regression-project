@@ -6,7 +6,7 @@ The live blog is [here](https://regularized-regression-project.onrender.com/).
 - [Features](#features)
 - [Repository Description](#repository-description)
 - [Local Installation](#local-installation)
-- [Global Installation](#global-installation)
+- [Required Packages](#required-packages)
 
 ## Project Overview
 This project is an interactive dashboard built with [Plotly Dash](https://dash.plotly.com/) to demonstrate the concepts of **Ridge** and **Lasso** regression.  
@@ -52,9 +52,9 @@ To install this project locally, follow these steps:
    ```
    
 2. Navigate to the project directory:
-```bash
-   cd regularized-regression-dashboard
-```
+  ```bash
+     cd regularized-regression-dashboard
+  ```
 
 3. Install the required dependencies:
    ```bash
@@ -71,7 +71,7 @@ To install this project locally, follow these steps:
    http://127.0.0.1:8050/
    ```
 
-## Technologies
+## Required Packages
 - Python 3.10
 - Dash (Plotly)
 - Plotly
