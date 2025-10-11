@@ -225,7 +225,7 @@ We will require assuming only X's and Y have been centered, so we have no need f
 - X is a n by p matrix with centered columns
 - Y is a centered n-vector
 
-It was proposed the the LS estimator
+It was proposed the LS estimator
 
 $$
 \hat{\beta} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}
@@ -250,7 +250,7 @@ $$""",
 
     html.Img(
     src="/assets/geom_interp_ridge.png",
-    style={"width": "70%", "display": "block", "margin": "auto"}
+    style={"width": "40%", "display": "block", "margin": "auto"}
 ),
 
     html.H3("Geometric Interpretation of Ridge Regression"),
