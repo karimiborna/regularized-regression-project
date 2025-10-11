@@ -277,23 +277,23 @@ $$""",
         "In the extreme, as λ approaches infinity, all coefficients collapse toward zero. "
     ),
 
-
     dcc.Markdown(
-        r"""
----
+    r"""
+    ---
 
-### Lasso Regression (L1 penalty)
+    ### Lasso Regression (L1 penalty)
 
-$$
-\mathcal{L}({\beta})
-= \sum_{i=1}^{n} \big(y_i - \hat{y}_i\big)^2
-+ \lambda \sum_{j=1}^{p} \lvert \beta_j \rvert
-$$
+    $$
+    \mathcal{L}({\beta})
+    = \sum_{i=1}^{n} \big(y_i - \hat{y}_i\big)^2
+    + \lambda \sum_{j=1}^{p} \lvert \beta_j \rvert
+    $$
 
-Lasso Regression is very **similar** to Ridge Regression, but they have some very important **differences**.
+    Lasso Regression is very **similar** to Ridge Regression, but they have some very important **differences**.
 
-To understand those similarities and differences, let's look at this chart.
-"""),
+    To understand those similarities and differences, let's look at this chart.
+    """
+),
 
 html.Img(
     src="/assets/lasso_001.jpg",
