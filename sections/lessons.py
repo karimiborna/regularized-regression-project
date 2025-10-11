@@ -207,7 +207,7 @@ To understand those similarities and differences, let's look at this chart.
 """),
 
 html.Img(
-    src="/assets/geom_interp_ridge.png",
+    src="/assets/lasso_001.jpg",
     style={"width": "70%", "display": "block", "margin": "auto"}),
 
          
