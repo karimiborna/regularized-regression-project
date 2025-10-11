@@ -434,6 +434,8 @@ Ridge Regression is very similar to...
 Lasso Regression  
 - sum of squared residuals + **λ** * **the |slope|**  
 
+As λ increases, both of them add bias but reduce variance, improving generalization.  
+
 The main difference is that **Lasso Regression** can exclude useless variables from equations, which makes the final equation simpler and eaiser to interpret.
 
 """,
