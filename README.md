@@ -50,11 +50,12 @@ To install this project locally, follow these steps:
    ```bash
    git clone https://github.com/YOUR_USERNAME/regularized-regression-dashboard.git
    ```
-   
+
 2. Navigate to the project directory:
-  ```bash
-     cd regularized-regression-dashboard
-  ```
+
+   ```bash
+   cd regularized-regression-dashboard
+   ```
 
 3. Install the required dependencies:
    ```bash
