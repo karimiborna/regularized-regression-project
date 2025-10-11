@@ -1,5 +1,6 @@
-# regularized-regression-project
-Final project for Fall 2025 Linear Regression Analysis.
+# Regularized Regression Project
+Final project for Fall 2025 Linear Regression Analysis.  
+The live blog is [here](https://regularized-regression-project.onrender.com/).  
 
 # Regularized Regression Dashboard
 
