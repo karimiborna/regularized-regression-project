@@ -1,5 +1,5 @@
 # Regularized Regression Dashboard
-The live blog is [here](https://regularized-regression-project.onrender.com/).  
+The live blog is [here](https://regularized-regression-project.onrender.com/). May take time to load if the site has been idle.
 
 ## Table of Contents
 - [Project Overview](#project-overview)
